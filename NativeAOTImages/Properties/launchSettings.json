@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NativeAOTImages": {
+      "commandName": "Project",
+      "commandLineArgs": "dotnetbot_2.png"
+    }
+  }
+}
