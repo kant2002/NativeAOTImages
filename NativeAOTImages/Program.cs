@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace NativeAOTImages
 {
@@ -14,15 +13,15 @@ namespace NativeAOTImages
     {
         static void Main(string[] args)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (args.Length == 0)
             {
-                // Magic string which make System.Drawing.Common works.
-                ComWrappers.RegisterForMarshalling(WinFormsComInterop.WinFormsComWrappers.Instance);
+                Console.WriteLine("NativeAOTImages <file>");
+                return;
             }
 
             int width = 128;
             int height = 128;
-            var file = args[0];
+            var file = Path.GetFileName(args[0]);
             Console.WriteLine($"Loading {file}");
             using var pngStream = new FileStream(args[0], FileMode.Open, FileAccess.Read);
             using var image = new Bitmap(pngStream);
